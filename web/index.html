@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relevamiento de Instancia Grupal</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- Íconos (se usan con <use href="#id">) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-carpeta" viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></symbol>
+  <symbol id="i-csv" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2 4 4h-4V4zM8 13h8v2H8v-2zm0 4h5v2H8v-2z"/></symbol>
+  <symbol id="i-excel" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm0 2 4 4h-4V4zM8.4 12h1.9l1.2 2 1.2-2h1.9l-2.1 3.3 2.2 3.4h-1.9l-1.3-2.1-1.3 2.1H8.3l2.2-3.4L8.4 12z"/></symbol>
+  <symbol id="i-config" viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5zm7.43-2.53c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1 0 .33.03.65.07.97l-2.11 1.66c-.19.15-.25.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.08.74 1.69.99l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"/></symbol>
+  <symbol id="i-recargar" viewBox="0 0 24 24"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4a8 8 0 1 0 7.73 10h-2.08A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></symbol>
+  <symbol id="i-agenda" viewBox="0 0 24 24"><path d="M17 3h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1V1h2v2h4V1h2v2zM4 6h2v2H4V6zm0 5h2v2H4v-2zm0 5h2v2H4v-2zm9-7a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm0 6c2.2 0 4 1.2 4 2.6V18H9v-.4c0-1.4 1.8-2.6 4-2.6z"/></symbol>
+  <symbol id="i-deshacer" viewBox="0 0 24 24"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62A7.93 7.93 0 0 1 12.5 10c3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 10.81 17.15 8 12.5 8z"/></symbol>
+  <symbol id="i-listo" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.2 14.6-4-4L8.2 11l2.6 2.6L15.8 8.6l1.4 1.5-6.4 6.5z"/></symbol>
+  <symbol id="i-planilla" viewBox="0 0 24 24"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm1 4v3h5V7H5zm7 0v3h7V7h-7zm-7 5v3h5v-3H5zm7 0v3h7v-3h-7zm-7 5v2h5v-2H5zm7 0v2h7v-2h-7z"/></symbol>
+  <symbol id="i-abrir" viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></symbol>
+</svg>
+
+<div class="app">
+
+  <header class="cabecera">
+    <div>
+      <h1>Relevamiento de Instancia Grupal</h1>
+      <p class="subtitulo">Elegí qué informe querés y con qué datos. Después apretá Ejecutar.</p>
+    </div>
+    <button type="button" class="btn-icono" id="btn-config" title="Configuración">
+      <svg class="ico"><use href="#i-config"></use></svg>
+      <span>Configuración</span>
+    </button>
+  </header>
+
+  <!-- De dónde salen los datos -->
+  <div class="origen" id="origen">
+    <div class="origen-info">
+      <svg class="ico"><use href="#i-planilla"></use></svg>
+      <span id="origen-texto">Leyendo la planilla de Google…</span>
+    </div>
+    <div class="origen-botones">
+      <!-- Abre la planilla de respuestas en el NAVEGADOR (lo hace Python, ver
+           Puente.abrir_planilla): un <a href> navegaría esta misma ventana y el
+           programa se quedaría sin interfaz. -->
+      <button type="button" class="btn-planilla" id="btn-abrir-sheet" hidden
+              title="Abre en el navegador la planilla de Google con las respuestas del formulario">
+        <svg class="ico"><use href="#i-abrir"></use></svg><span>Abrir la planilla de respuestas</span>
+      </button>
+      <button type="button" class="btn-secundario" id="btn-recargar">
+        <svg class="ico"><use href="#i-recargar"></use></svg><span>Actualizar</span>
+      </button>
+      <button type="button" class="btn-secundario" id="btn-csv">
+        <svg class="ico"><use href="#i-csv"></use></svg><span>Usar archivo descargado…</span>
+      </button>
+    </div>
+  </div>
+
+  <main class="tarjeta">
+
+    <fieldset class="tipos">
+      <legend>¿Qué informe querés generar?</legend>
+
+      <label class="tipo">
+        <input type="radio" name="tipo" value="instancia" checked>
+        <span class="tipo-cuerpo">
+          <span class="tipo-nombre">Instancia</span>
+          <span class="tipo-desc">Un taller de una Unidad Ejecutora y su servicio. Si se dictó en
+            varios días, se marcan todas esas fechas y sale un solo informe.</span>
+        </span>
+      </label>
+
+      <label class="tipo">
+        <input type="radio" name="tipo" value="unidad">
+        <span class="tipo-cuerpo">
+          <span class="tipo-nombre">Por Unidad Ejecutora</span>
+          <span class="tipo-desc">Toda la unidad: todos sus servicios y todas sus fechas.</span>
+        </span>
+      </label>
+    </fieldset>
+
+    <hr class="separador">
+
+    <div class="campo" data-para="instancia unidad">
+      <label for="unidad">Unidad Ejecutora</label>
+      <div class="control">
+        <select id="unidad"><option value="">Cargando…</option></select>
+        <p class="ayuda" id="ayuda-unidad">Las fechas de abajo son las de esta unidad.</p>
+      </div>
+    </div>
+
+    <div class="campo" data-para="instancia">
+      <label for="lista-fechas">Fechas de la instancia</label>
+      <div class="control">
+        <div class="lista-fechas" id="lista-fechas">
+          <p class="lista-vacia">Cargando…</p>
+        </div>
+        <div class="lista-acciones">
+          <button type="button" class="btn-mini" id="btn-todas-fechas">Marcar todas</button>
+          <button type="button" class="btn-mini" id="btn-ninguna-fecha">Desmarcar</button>
+          <span class="ayuda" id="resumen-fechas"></span>
+        </div>
+        <p class="ayuda">
+          Marcá el día del taller. Si la misma instancia se dictó en varios días (por ejemplo,
+          el turno de la mañana y el de la tarde en fechas distintas), marcá todos: las
+          respuestas se juntan en un único informe.
+        </p>
+      </div>
+    </div>
+
+    <div class="campo" data-para="instancia">
+      <label for="lista-servicios">Servicio / Área</label>
+      <div class="control">
+        <div class="lista-servicios" id="lista-servicios">
+          <p class="lista-vacia">Cargando…</p>
+        </div>
+        <div class="lista-acciones">
+          <button type="button" class="btn-mini" id="btn-todos-servicios">Marcar todos</button>
+          <button type="button" class="btn-mini" id="btn-ningun-servicio">Desmarcar</button>
+          <span class="ayuda" id="resumen-servicios"></span>
+        </div>
+        <p class="ayuda">
+          En el formulario es un campo libre, así que un mismo servicio aparece escrito de
+          varias formas. Marcá todas las que correspondan y se juntan en un solo informe.
+          Sin marcar nada, entran todos.
+        </p>
+
+        <div class="nombre-informe">
+          <label for="nombre-servicio">Nombre para el informe</label>
+          <input type="text" id="nombre-servicio" autocomplete="off"
+                 placeholder="(se completa solo)">
+          <p class="ayuda">
+            Es el nombre que va a figurar en el Excel y en el título del informe. Se sugiere
+            solo a partir de lo que marcaste; corregilo si querés que diga otra cosa.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="separador">
+
+    <div class="campo">
+      <label for="asistentes">Cantidad de asistentes</label>
+      <div class="control">
+        <input type="number" id="asistentes" min="0" max="9999" step="1" value="0" class="angosto">
+        <p class="ayuda">Dato manual: no sale del formulario. En los informes que juntan
+          varias instancias, poné el total de todas.</p>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="antecedentes">Antecedentes / contexto</label>
+      <div class="control">
+        <textarea id="antecedentes" rows="4"
+                  placeholder="Quién solicitó la intervención, reuniones previas, actividades realizadas…"></textarea>
+        <p class="ayuda">La IA lo usa para redactar los Antecedentes. Si queda vacío, usa una fórmula genérica.</p>
+      </div>
+    </div>
+
+    <div class="campo">
+      <label for="entrevistas">Entrevistas individuales confidenciales</label>
+      <div class="control">
+        <textarea id="entrevistas" rows="4"
+                  placeholder="Conceptos que surgen de las entrevistas confidenciales (sin nombres)."></textarea>
+        <p class="ayuda">
+          Con esto la IA arma una sección propia del informe, después de «Motivación» y antes de las
+          Conclusiones. Si queda vacío, no se agrega esa sección.
+        </p>
+      </div>
+    </div>
+
+    <label class="casilla">
+      <input type="checkbox" id="con-informe" checked>
+      <span>Generar también el informe con IA</span>
+    </label>
+
+  </main>
+
+  <div class="acciones">
+    <button type="button" class="btn-primario" id="btn-ejecutar">
+      <svg class="ico"><use href="#i-play"></use></svg>
+      <span id="txt-ejecutar">EJECUTAR</span>
+    </button>
+    <div class="acciones-secundarias">
+      <button type="button" class="btn-secundario" id="btn-entrevistas">
+        <svg class="ico"><use href="#i-agenda"></use></svg><span>Ver entrevistas pendientes</span>
+      </button>
+      <button type="button" class="btn-secundario" id="btn-resultados">
+        <svg class="ico"><use href="#i-carpeta"></use></svg><span>Ver resultados</span>
+      </button>
+      <button type="button" class="btn-secundario" id="btn-xlsx"
+              title="A partir de una planilla del relevamiento llenada a mano (.ods de LibreOffice Calc o .xlsx de Excel)">
+        <svg class="ico"><use href="#i-excel"></use></svg><span>Informe desde planilla…</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Aviso destacado de resultado (éxito o error) -->
+  <div class="aviso" id="aviso" hidden>
+    <svg class="ico"><use href="#i-check"></use></svg>
+    <p id="aviso-texto"></p>
+  </div>
+
+  <section class="registro-caja">
+    <div class="registro-titulo">
+      <span>Registro de actividad</span>
+      <span class="hilando" id="hilando" hidden>
+        <span class="spinner"></span> Trabajando…
+      </span>
+    </div>
+    <pre class="registro" id="registro" aria-live="polite"></pre>
+  </section>
+
+</div>
+
+<!-- ────────────────────── Entrevistas pendientes ────────────────────── -->
+<div class="fondo-modal" id="modal-entrevistas" hidden>
+  <div class="modal ancho" role="dialog" aria-modal="true" aria-labelledby="entrevistas-titulo">
+    <h2 id="entrevistas-titulo">Entrevistas individuales</h2>
+    <p class="subtitulo" id="entrevistas-resumen">Leyendo la planilla…</p>
+
+    <!-- Las dos listas comparten la tabla de abajo; el botón de cada fila
+         cambia según la pestaña: "Completada" en Pendientes, "Deshacer" en
+         Completadas. -->
+    <div class="pestanas" role="tablist">
+      <button type="button" class="pestana activa" id="tab-pendientes" role="tab">Pendientes</button>
+      <button type="button" class="pestana" id="tab-hechas" role="tab">Completadas</button>
+    </div>
+
+    <div class="tabla-caja">
+      <table class="tabla-entrevistas">
+        <thead>
+          <tr>
+            <th>U.E.</th>
+            <th>Fecha</th>
+            <th>Nombre</th>
+            <th>Contacto</th>
+            <th class="col-accion"><span class="oculto-visual">Acción</span></th>
+          </tr>
+        </thead>
+        <tbody id="entrevistas-filas"></tbody>
+      </table>
+      <p class="lista-vacia" id="entrevistas-vacio" hidden></p>
+    </div>
+
+    <p class="ayuda">
+      Son las personas que dejaron su nombre y su celular en el formulario. Al marcar una como
+      completada pasa a la pestaña «Completadas», donde el botón <strong>Deshacer</strong> la
+      devuelve a pendientes. Todo queda anotado en el archivo
+      <code>entrevistas_completadas.json</code>, junto al programa.
+    </p>
+
+    <div class="modal-botones">
+      <button type="button" class="btn-secundario" id="btn-cerrar-entrevistas">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ───────────────────────── Configuración ───────────────────────── -->
+<div class="fondo-modal" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <h2 id="modal-titulo">Configuración</h2>
+    <p class="subtitulo">Estos datos se cargan una sola vez y quedan guardados.</p>
+
+    <div class="campo-modal">
+      <label for="cfg-sheet">ID de la planilla de Google</label>
+      <input type="text" id="cfg-sheet" autocomplete="off" spellcheck="false">
+      <p class="ayuda">Es la parte larga de la dirección web de la planilla.</p>
+    </div>
+
+    <div class="campo-modal">
+      <label for="cfg-hoja">Nombre de la hoja <span class="opcional">(opcional)</span></label>
+      <input type="text" id="cfg-hoja" autocomplete="off">
+      <p class="ayuda">Dejar vacío para usar la primera hoja.</p>
+    </div>
+
+    <div class="campo-modal">
+      <label for="cfg-clave">Clave de la IA (ANTHROPIC_API_KEY)</label>
+      <div class="clave-fila">
+        <input type="password" id="cfg-clave" autocomplete="off" spellcheck="false">
+        <button type="button" class="btn-mini" id="btn-ver-clave">Ver</button>
+      </div>
+      <p class="ayuda">Empieza con sk-ant-… Se usa para redactar el informe.
+        Sin clave, el programa igual prepara un texto para usar Claude gratis.</p>
+    </div>
+
+    <div class="campo-modal">
+      <label for="cfg-modelo">Modelo de IA <span class="opcional">(opcional)</span></label>
+      <input type="text" id="cfg-modelo" autocomplete="off" spellcheck="false">
+      <p class="ayuda">Dejar vacío para usar el recomendado (<span id="modelo-default">—</span>).</p>
+    </div>
+
+    <div class="estado-credenciales" id="estado-cred"></div>
+
+    <div class="modal-botones">
+      <button type="button" class="btn-secundario" id="btn-cancelar">Cancelar</button>
+      <button type="button" class="btn-primario chico" id="btn-guardar">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

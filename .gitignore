@@ -1,0 +1,19 @@
+# Secretos. Los mismos nombres que excluye desarrollo/preparar_entrega.py:
+# el criterio del proyecto es que estos archivos no viajan nunca, ni en un ZIP
+# de distribución ni en un repositorio.
+ajustes.json
+credenciales.json
+registro.log
+entrevistas_completadas.json
+autotest_resultado.txt
+
+# Generado: se rehace solo y pesa.
+dist/
+build/
+salida/
+*.zip
+__pycache__/
+*.pyc
+
+# Configuración local de la máquina de desarrollo.
+.claude/

@@ -1,0 +1,231 @@
+{
+  "tipo": "instancia",
+  "tipo_nombre": "Instancia puntual",
+  "unidad": "Hospital Central",
+  "servicio": "",
+  "fecha": "18/6/2026",
+  "periodo": "18/6/2026",
+  "fechas_incluidas": [
+    "18/6/2026"
+  ],
+  "unidades_incluidas": [
+    "Hospital Central"
+  ],
+  "servicios_incluidos": [
+    "EMERGENCIA",
+    "Emergencia",
+    "Emergencia adultos",
+    "Emergencia de adulto",
+    "emergencia"
+  ],
+  "region": "Región Sur",
+  "asistentes": null,
+  "respuestas": 6,
+  "medicos": 2,
+  "no_medicos": 4,
+  "entrevistas_individuales": 2,
+  "notas_alcance": [],
+  "secciones": [
+    {
+      "titulo": "COMUNICACIÓN (Comunicación, escucha, información)",
+      "preguntas": [
+        {
+          "texto": "La comunicación entre mi sector de trabajo con el Equipo de Gestión es buena.",
+          "en_desacuerdo": 1,
+          "neutro": 2,
+          "de_acuerdo": 3,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 50,
+          "pct_total": 100
+        },
+        {
+          "texto": "La comunicación con mi jefe inmediato es buena.",
+          "en_desacuerdo": 0,
+          "neutro": 1,
+          "de_acuerdo": 5,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 83,
+          "pct_total": 100
+        },
+        {
+          "texto": "La comunicación con mis compañeros de trabajo de sector es buena.",
+          "en_desacuerdo": 1,
+          "neutro": 2,
+          "de_acuerdo": 3,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 50,
+          "pct_total": 100
+        },
+        {
+          "texto": "El jefe de mi sector escucha mis ideas, aportes y sugerencias para mejorar el trabajo.",
+          "en_desacuerdo": 0,
+          "neutro": 3,
+          "de_acuerdo": 3,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 50,
+          "pct_de_acuerdo": 50,
+          "pct_total": 100
+        },
+        {
+          "texto": "Estoy  debidamente informado sobre las tareas y responsabilidades necesarias para el desempeño de mis funciones.",
+          "en_desacuerdo": 1,
+          "neutro": 1,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        }
+      ]
+    },
+    {
+      "titulo": "RELACIONES INTERPERSONALES (Respeto, relacionamiento, confianza)",
+      "preguntas": [
+        {
+          "texto": "Siento que el jefe de mi sector me trata con respeto.",
+          "en_desacuerdo": 1,
+          "neutro": 1,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        },
+        {
+          "texto": "Siento que mis compañeros me tratan con respeto.",
+          "en_desacuerdo": 0,
+          "neutro": 1,
+          "de_acuerdo": 5,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 83,
+          "pct_total": 100
+        },
+        {
+          "texto": "En general considero que me llevo bien con mis compañeros.",
+          "en_desacuerdo": 0,
+          "neutro": 2,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        },
+        {
+          "texto": "Confio en mis compañeros.",
+          "en_desacuerdo": 0,
+          "neutro": 1,
+          "de_acuerdo": 5,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 83,
+          "pct_total": 100
+        }
+      ]
+    },
+    {
+      "titulo": "TRABAJO EN EQUIPO (Colaboración, apoyo, cumplimiento de roles)",
+      "preguntas": [
+        {
+          "texto": "En mi sector de trabajo se incentiva el trabajo en equipo.",
+          "en_desacuerdo": 1,
+          "neutro": 2,
+          "de_acuerdo": 2,
+          "total": 5,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 33,
+          "pct_total": 83
+        },
+        {
+          "texto": "Cuando tengo problemas con mi trabajo puedo contar con mis compañeros y/o con el jefe del sector.",
+          "en_desacuerdo": 1,
+          "neutro": 1,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        },
+        {
+          "texto": "En mi sector de trabajo están bien definidas las tareas y roles de cada uno.",
+          "en_desacuerdo": 1,
+          "neutro": 2,
+          "de_acuerdo": 3,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 50,
+          "pct_total": 100
+        }
+      ]
+    },
+    {
+      "titulo": "MOTIVACIÓN (Motivación, reconocimiento, feedback)",
+      "preguntas": [
+        {
+          "texto": "Me siento motivado y satisfecho con el desempeño de mis tareas.",
+          "en_desacuerdo": 0,
+          "neutro": 2,
+          "de_acuerdo": 3,
+          "total": 5,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 50,
+          "pct_total": 83
+        },
+        {
+          "texto": "Me siento reconocido y valorado por mis jefes en el desempeño de mis funciones.",
+          "en_desacuerdo": 0,
+          "neutro": 2,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 0,
+          "pct_neutro": 33,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        },
+        {
+          "texto": "Siento que el jefe de mi sector me orienta sobre cómo percibe mi desempeño en el trabajo y me da pautas para mejorar.",
+          "en_desacuerdo": 1,
+          "neutro": 1,
+          "de_acuerdo": 4,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 17,
+          "pct_de_acuerdo": 67,
+          "pct_total": 100
+        }
+      ]
+    },
+    {
+      "titulo": "Valoración de la Instancia Taller",
+      "preguntas": [
+        {
+          "texto": "Valoro muy positivamente la instancia taller del día de hoy con la Unidad de Mediación y Convivencia.",
+          "en_desacuerdo": 1,
+          "neutro": 0,
+          "de_acuerdo": 5,
+          "total": 6,
+          "pct_en_desacuerdo": 17,
+          "pct_neutro": 0,
+          "pct_de_acuerdo": 83,
+          "pct_total": 100
+        }
+      ]
+    }
+  ]
+}

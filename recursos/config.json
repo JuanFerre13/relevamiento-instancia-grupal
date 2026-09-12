@@ -1,0 +1,73 @@
+{
+  "titulo": "RELEVAMIENTO DE INSTANCIA GRUPAL",
+  "columnas": {
+    "fecha": "Fecha",
+    "marca_temporal": "Marca temporal",
+    "tipo_encuestado": "Usted es:",
+    "region": "Región",
+    "servicio": "Servicio/Área",
+    "nombre_completo": "Nombre completo",
+    "celular": "Celular de contacto",
+    "solicita_entrevista": "¿Considera usted necesario solicitar una entrevista individual confidencial por algún tema de su especial interés?",
+    "respuesta_afirmativa": "Sí",
+    "unidad": [
+      "U.E SUR",
+      "U.E ESTE",
+      "U.E OESTE",
+      "U.E NORTE",
+      "RAP SUR",
+      "RAP ESTE",
+      "RAP OESTE",
+      "RAP NORTE"
+    ]
+  },
+  "opciones": {
+    "de_acuerdo": "De acuerdo",
+    "neutro": "Neutro",
+    "en_desacuerdo": "En desacuerdo"
+  },
+  "secciones": [
+    {
+      "titulo": "COMUNICACIÓN (Comunicación, escucha, información)",
+      "preguntas": [
+        "La comunicación entre mi sector de trabajo con el Equipo de Gestión es buena.",
+        "La comunicación con mi jefe inmediato es buena.",
+        "La comunicación con mis compañeros de trabajo de sector es buena.",
+        "El jefe de mi sector escucha mis ideas, aportes y sugerencias para mejorar el trabajo.",
+        "Estoy  debidamente informado sobre las tareas y responsabilidades necesarias para el desempeño de mis funciones."
+      ]
+    },
+    {
+      "titulo": "RELACIONES INTERPERSONALES (Respeto, relacionamiento, confianza)",
+      "preguntas": [
+        "Siento que el jefe de mi sector me trata con respeto.",
+        "Siento que mis compañeros me tratan con respeto.",
+        "En general considero que me llevo bien con mis compañeros.",
+        "Confio en mis compañeros."
+      ]
+    },
+    {
+      "titulo": "TRABAJO EN EQUIPO (Colaboración, apoyo, cumplimiento de roles)",
+      "preguntas": [
+        "En mi sector de trabajo se incentiva el trabajo en equipo.",
+        "Cuando tengo problemas con mi trabajo puedo contar con mis compañeros y/o con el jefe del sector.",
+        "En mi sector de trabajo están bien definidas las tareas y roles de cada uno."
+      ]
+    },
+    {
+      "titulo": "MOTIVACIÓN (Motivación, reconocimiento, feedback)",
+      "preguntas": [
+        "Me siento motivado y satisfecho con el desempeño de mis tareas.",
+        "Me siento reconocido y valorado por mis jefes en el desempeño de mis funciones.",
+        "Siento que el jefe de mi sector me orienta sobre cómo percibe mi desempeño en el trabajo y me da pautas para mejorar."
+      ]
+    },
+    {
+      "titulo": "Valoración de la Instancia Taller",
+      "preguntas": [
+        "Valoro muy positivamente la instancia taller del día de hoy con la Unidad de Mediación y Convivencia."
+      ]
+    }
+  ],
+  "nota_pie": "* Nota: En los indicadores que no se registra 100% en el total, es porque se omitieron respuestas."
+}

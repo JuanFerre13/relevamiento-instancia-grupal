@@ -1,0 +1,12 @@
+# Normalización de saltos de línea.
+* text=auto eol=lf
+
+# Los .bat van SIEMPRE en CRLF. Con LF sueltos, cmd.exe se rompe adentro de los
+# bloques `if ... ( ... )` — está documentado en GUIA.md, sección 8.
+*.bat text eol=crlf
+
+# Binarios: que git no los toque ni intente hacerles diff de texto.
+*.docx binary
+*.odt  binary
+*.xlsx binary
+*.ico  binary

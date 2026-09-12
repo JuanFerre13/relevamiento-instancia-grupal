@@ -1,0 +1,721 @@
+/* Relevamiento de Instancia Grupal — estética institucional del organismo.
+   Se mantiene el azul #1f4e79 que usaba la versión anterior del programa. */
+
+:root {
+  color-scheme: light;              /* evita que Windows fuerce modo oscuro en los campos */
+  --azul: #1f4e79;
+  --azul-claro: #2c6ba8;
+  --azul-suave: #e8f0f8;
+  --fondo: #eef1f5;
+  --borde: #d3dae3;
+  --texto: #22303f;
+  --texto-tenue: #6b7a8c;
+  --verde: #1a7a1a;
+  --verde-sheets: #188038;          /* el verde de Google Sheets: el acceso a la planilla */
+  --verde-sheets-claro: #0f9d58;
+  --verde-fondo: #e9f7e9;
+  --rojo: #b00000;
+  --rojo-fondo: #fdeaea;
+  --radio: 10px;
+}
+
+* { box-sizing: border-box; }
+
+/* El atributo `hidden` del HTML lo aplica el navegador con `display:none`, pero
+   con la prioridad más baja que existe: cualquier clase nuestra que defina un
+   `display` (flex, inline-flex…) lo pisa y el elemento se sigue viendo. Como
+   mostramos y ocultamos varias cosas con `.hidden = true` desde el JS, esta
+   regla tiene que ganar siempre. */
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: hidden;                 /* la página no scrollea: scrollea el formulario */
+}
+
+/* Nada de selección de texto ni menú contextual accidental: se siente app, no página */
+body { user-select: none; }
+input, textarea, .registro { user-select: text; }
+
+/* La altura queda fija a la ventana y sólo la tarjeta del formulario scrollea.
+   Así el botón EJECUTAR y el registro de actividad están SIEMPRE a la vista,
+   por chica que sea la pantalla del cliente. */
+.app {
+  height: 100%;
+  max-width: 1000px;                /* maximizada, el contenido queda centrado */
+  margin: 0 auto;
+  padding: 20px 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cabecera, .origen, .acciones, .aviso, .registro-caja { flex: none; }
+
+/* ─────────────────── De dónde salen los datos ─────────────────────── */
+.origen {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 9px 14px;
+  background: var(--azul-suave);
+  border: 1px solid #cddff0;
+  border-radius: var(--radio);
+  font-size: 13px;
+}
+
+.origen.con-error {
+  background: var(--rojo-fondo);
+  border-color: #f0bcbc;
+  color: var(--rojo);
+}
+
+.origen-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-weight: 500;
+  color: var(--azul);
+}
+
+.origen.con-error .origen-info { color: var(--rojo); }
+.origen-botones { display: flex; gap: 7px; }
+.origen .btn-secundario { padding: 6px 11px; font-size: 12.5px; }
+
+/* El acceso a la planilla de respuestas es lo único verde de la barra: se
+   despega enseguida de los dos botones grises de al lado sin competirle al azul
+   institucional de EJECUTAR. */
+.btn-planilla {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--verde-sheets);
+  border: 1px solid var(--verde-sheets);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .12s, border-color .12s, transform .06s;
+}
+
+.btn-planilla:hover {
+  background: var(--verde-sheets-claro);
+  border-color: var(--verde-sheets-claro);
+}
+
+.btn-planilla:active { transform: translateY(1px); }
+
+/* ─────────────────────── Tipo de informe ──────────────────────────── */
+.tipos {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  /* Los cuatro en una fila cuando hay ancho (ventana maximizada); de a dos, o
+     uno, cuando no. Así el selector no se come el alto del formulario. */
+  grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+  gap: 8px;
+}
+
+.tipos legend {
+  padding: 0 0 9px;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.tipo {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
+  cursor: pointer;
+  transition: border-color .12s, background .12s;
+}
+
+.tipo:hover { border-color: var(--azul-claro); background: #fafcfe; }
+
+.tipo input {
+  margin: 2px 0 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--azul);
+  flex: none;
+  cursor: pointer;
+}
+
+.tipo:has(input:checked) {
+  border-color: var(--azul);
+  background: var(--azul-suave);
+  box-shadow: inset 0 0 0 1px var(--azul);
+}
+
+.tipo-cuerpo { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tipo-nombre { font-weight: 600; font-size: 13.5px; }
+.tipo-desc { font-size: 12.2px; color: var(--texto-tenue); line-height: 1.35; }
+
+/* ────────── Listas de casillas (Servicios/Áreas y Fechas) ─────────── */
+.lista-servicios,
+.lista-fechas {
+  max-height: 168px;
+  overflow-y: auto;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  background: #fff;
+  padding: 4px;
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13.2px;
+}
+
+.opcion:hover { background: var(--azul-suave); }
+
+.opcion input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--azul);
+  flex: none;
+  cursor: pointer;
+}
+
+.opcion-nombre { flex: 1; min-width: 0; }
+
+.opcion-cuenta {
+  flex: none;
+  padding: 1px 8px;
+  background: #eef2f7;
+  border-radius: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--texto-tenue);
+}
+
+.lista-vacia {
+  margin: 0;
+  padding: 10px;
+  color: var(--texto-tenue);
+  font-size: 12.5px;
+}
+
+.lista-acciones {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+}
+
+.lista-acciones .btn-mini { padding: 4px 10px; font-size: 12px; }
+.lista-acciones .ayuda { margin: 0 0 0 4px; }
+
+/* Nombre con el que el servicio elegido va a figurar en el informe */
+.nombre-informe {
+  margin-top: 11px;
+  padding: 10px 12px;
+  background: #f7f9fb;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.nombre-informe > label {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.nombre-informe .ayuda { margin-top: 5px; }
+
+/* ───────────────────────────── Cabecera ───────────────────────────── */
+.cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azul);
+  letter-spacing: -0.2px;
+}
+
+.subtitulo {
+  margin: 2px 0 0;
+  color: var(--texto-tenue);
+  font-size: 13px;
+}
+
+/* ───────────────────────────── Tarjeta ────────────────────────────── */
+.tarjeta {
+  flex: 1 1 auto;
+  min-height: 0;                    /* imprescindible para que el scroll interno funcione */
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.campo {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.campo > label {
+  font-weight: 600;
+  padding-top: 7px;
+  font-size: 13.5px;
+}
+
+.control { min-width: 0; }
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--texto);
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  padding: 8px 10px;
+  transition: border-color .12s, box-shadow .12s;
+}
+
+input.angosto { width: 110px; }
+
+textarea {
+  resize: vertical;
+  min-height: 72px;
+  line-height: 1.5;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--azul-claro);
+  box-shadow: 0 0 0 3px rgba(44, 107, 168, .16);
+}
+
+select { cursor: pointer; }
+select:disabled { background: #f4f6f8; color: var(--texto-tenue); cursor: default; }
+
+input::placeholder, textarea::placeholder { color: #a9b4c0; }
+
+.ayuda {
+  margin: 5px 0 0;
+  font-size: 12.2px;
+  color: var(--texto-tenue);
+}
+
+.separador {
+  border: none;
+  border-top: 1px solid var(--borde);
+  margin: 2px 0;
+}
+
+.casilla {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  padding-top: 2px;
+}
+
+.casilla input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--azul);
+  cursor: pointer;
+}
+
+/* ───────────────────────────── Botones ────────────────────────────── */
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ico {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  flex: none;
+}
+
+.btn-primario {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: #fff;
+  background: var(--azul);
+  border: none;
+  border-radius: var(--radio);
+  cursor: pointer;
+  transition: background .12s, transform .06s;
+}
+
+.btn-primario .ico { width: 20px; height: 20px; }
+.btn-primario:hover:not(:disabled) { background: var(--azul-claro); }
+.btn-primario:active:not(:disabled) { transform: translateY(1px); }
+
+.btn-primario:disabled {
+  background: #9fb0c2;
+  cursor: default;
+}
+
+.btn-primario.chico {
+  width: auto;
+  padding: 9px 20px;
+  font-size: 14px;
+  letter-spacing: 0;
+}
+
+.acciones-secundarias {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-secundario, .btn-icono {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto);
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .12s, border-color .12s;
+}
+
+.btn-secundario:hover:not(:disabled),
+.btn-icono:hover:not(:disabled) {
+  background: var(--azul-suave);
+  border-color: var(--azul-claro);
+  color: var(--azul);
+}
+
+.btn-secundario:disabled { opacity: .5; cursor: default; }
+
+.btn-icono { color: var(--texto-tenue); }
+
+.btn-mini {
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--texto-tenue);
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 7px;
+  cursor: pointer;
+  flex: none;
+}
+
+.btn-mini:hover { background: var(--azul-suave); color: var(--azul); }
+
+/* ───────────────────────── Aviso de resultado ─────────────────────── */
+.aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 15px;
+  border-radius: var(--radio);
+  border: 1px solid;
+  font-size: 13.5px;
+}
+
+.aviso p { margin: 0; }
+.aviso .ico { margin-top: 1px; width: 18px; height: 18px; }
+
+.aviso.ok {
+  background: var(--verde-fondo);
+  border-color: #b6dfb6;
+  color: var(--verde);
+}
+
+.aviso.error {
+  background: var(--rojo-fondo);
+  border-color: #f0bcbc;
+  color: var(--rojo);
+}
+
+/* ──────────────────────────── Registro ────────────────────────────── */
+.registro-caja {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.registro-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--texto-tenue);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.hilando {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--azul);
+}
+
+.spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(31, 78, 121, .25);
+  border-top-color: var(--azul);
+  border-radius: 50%;
+  animation: girar .7s linear infinite;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+.registro {
+  margin: 0;
+  /* Chica en una ventana chica; algo más alta cuando sobra pantalla, pero sin
+     comerse el espacio del formulario, que es lo que más se usa. */
+  height: clamp(110px, 13vh, 180px);
+  overflow-y: auto;
+  padding: 11px 13px;
+  background: #fff;
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  font-family: Consolas, "Cascadia Mono", monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: #3b4a5a;
+}
+
+.registro:empty::before {
+  content: "Todavía no hay actividad.";
+  color: #a9b4c0;
+}
+
+/* ─────────────────────────── Configuración ────────────────────────── */
+.fondo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 32, 45, .45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 10;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 26px;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+}
+
+.modal h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--azul);
+}
+
+.modal .subtitulo { margin-bottom: 18px; }
+
+.campo-modal { margin-bottom: 15px; }
+
+.campo-modal > label {
+  display: block;
+  font-weight: 600;
+  font-size: 13.5px;
+  margin-bottom: 5px;
+}
+
+.opcional { font-weight: 400; color: var(--texto-tenue); }
+
+.clave-fila { display: flex; gap: 7px; }
+
+.estado-credenciales {
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 18px 0 4px;
+  white-space: pre-line;   /* la ruta de la carpeta va en su propio renglón */
+  word-break: break-word;
+}
+
+.estado-credenciales.ok { background: var(--verde-fondo); color: var(--verde); }
+.estado-credenciales.falta { background: var(--rojo-fondo); color: var(--rojo); }
+
+.modal-botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+/* ───────────────── Tabla de entrevistas pendientes ────────────────── */
+/* La lista puede tener muchas filas: el modal se ensancha y la tabla
+   scrollea sola, para que el botón Cerrar quede siempre a la vista. */
+.modal.ancho { max-width: 860px; }
+
+.pestanas {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.pestana {
+  padding: 7px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--texto-tenue);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  cursor: pointer;
+}
+
+.pestana:hover { color: var(--azul); }
+
+.pestana.activa {
+  color: var(--azul);
+  font-weight: 600;
+  border-bottom-color: var(--azul);
+}
+
+.tabla-caja {
+  max-height: 52vh;
+  overflow-y: auto;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.tabla-entrevistas {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.2px;
+}
+
+.tabla-entrevistas th {
+  position: sticky;   /* el encabezado no se pierde al scrollear */
+  top: 0;
+  z-index: 1;
+  background: #f2f5f8;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: var(--texto-tenue);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla-entrevistas td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eef1f5;
+  vertical-align: middle;
+}
+
+.tabla-entrevistas tr:last-child td { border-bottom: none; }
+.tabla-entrevistas tbody tr:hover { background: var(--azul-suave); }
+
+/* El botón de cada fila. Necesita `inline-flex` propio: `.btn-mini` es
+   inline-block, y ahí el ícono y el texto caen en dos renglones y la fila
+   pasa a medir 70 px de alto. */
+.btn-fila {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+.btn-fila .ico { width: 15px; height: 15px; }
+
+.celda-nombre { font-weight: 600; }
+.celda-fecha { white-space: nowrap; }
+.celda-contacto { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.col-accion { width: 1%; }
+
+.oculto-visual {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.tabla-entrevistas code,
+.ayuda code {
+  background: #eef2f7;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+}
+
+/* ─────────────────────── Ventana angosta ──────────────────────────── */
+@media (max-width: 700px) {
+  .campo { grid-template-columns: 1fr; gap: 5px; }
+  .campo > label { padding-top: 0; }
+  .app { padding: 18px; }
+}
