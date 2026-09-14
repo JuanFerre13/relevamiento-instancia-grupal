@@ -66,27 +66,33 @@ editar la salida a mano**:
 | [`recursos/informes_ejemplo/`](recursos/informes_ejemplo/) | El corpus few-shot (ficticio) en los tres formatos que el programa sabe leer |
 | [`GUIA.md`](GUIA.md) | La documentación técnica completa: cómo funciona por dentro y **por qué se tomó cada decisión** |
 
-## Probarlo sin credenciales
+## Cómo se opera
 
-No hace falta ni cuenta de Google ni clave de API: el repositorio trae un CSV de
-respuestas ficticias que ejercita el camino completo.
+En el uso diario no se toca la consola: se abre con `Iniciar.bat`, se elige la
+unidad, la fecha y el servicio en la ventana, y se aprieta Ejecutar. Los
+resultados aparecen en una carpeta del Escritorio.
 
-```bash
-pip install -r requirements.txt
-python codigo/procesar.py --csv desarrollo/ejemplo_respuestas.csv --tipo instancia --unidad "Hospital Central" --fecha 18/6/2026
+Las tres etapas también corren por separado desde la consola, que es como se
+produjeron los archivos de [`ejemplos/`](ejemplos/):
+
+```
+procesar.py --csv <archivo> --tipo instancia --unidad <U.E.> --fecha <d/m/aaaa>
+     → la planilla .xlsx y el .json de resumen
+
+generar_informe.py <resumen.json>
+     → el informe .docx sobre la hoja membretada
+
+generar_informe.py <resumen.json> --sin-clave
+     → el prompt en un .txt, sin llamar a la API
 ```
 
-Eso deja el `.xlsx` y el `.json` de resumen en `salida/`. Para ver el prompt que
-se le mandaría al modelo, sin gastar un peso de API:
+Ese último modo existe porque permite evaluar la calidad del resultado antes de
+decidir pagar la API. Y el camino por CSV existe como plan B: el programa
+funciona entero sin conexión a Google y sin clave, que es lo que permitió
+generar todo lo que hay en `ejemplos/`.
 
-```bash
-python codigo/generar_informe.py salida/HospitalCentral-06-26/relevamiento_hospital_central_1862026.json --sin-clave
-```
-
-Ese modo escribe un `.txt` para pegar en claude.ai. Existe porque permite
-evaluar la calidad del resultado antes de decidir pagar la API.
-
-Para la ventana: `Iniciar.bat` en Windows, o `python codigo/app.py`.
+> Este repositorio se publica **para ser leído, no ejecutado**: ver
+> [Licencia](#licencia).
 
 ## Configuración
 
@@ -147,4 +153,10 @@ datos de prueba ficticios.
 
 ## Licencia
 
-[MIT](LICENSE).
+**Todos los derechos reservados.** Este repositorio es un portfolio: se publica
+para que el trabajo pueda verse y evaluarse, no para ser usado, copiado ni
+modificado. No es software libre ni de código abierto.
+
+El detalle está en [LICENSE](LICENSE). En resumen: se puede leer y citar con
+atribución; cualquier otro uso —ejecutarlo, reproducirlo, derivar de él o
+incorporarlo a otro proyecto— necesita autorización por escrito.

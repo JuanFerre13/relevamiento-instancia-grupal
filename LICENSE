@@ -1,21 +1,83 @@
-MIT License
+Copyright (c) 2026 Juan Ferreiro. Todos los derechos reservados.
+All rights reserved.
 
-Copyright (c) 2026 Juan Ferreiro
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ESPAÑOL
+=======
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Este repositorio se publica con un único fin: mostrar públicamente trabajo
+propio del autor, a modo de portfolio. No es software libre ni de código
+abierto.
+
+SE PERMITE:
+
+  * Ver y leer el código y la documentación de este repositorio.
+  * Citarlo o enlazarlo con fines de evaluación profesional, académicos o
+    periodísticos, indicando la autoría.
+
+NO SE PERMITE, sin autorización previa y por escrito del autor:
+
+  * Usar este software, en todo o en parte, para cualquier propósito.
+  * Copiar, reproducir, alojar o redistribuir el código, la documentación o
+    cualquier otro material de este repositorio.
+  * Modificar el código o crear obras derivadas a partir de él.
+  * Incorporarlo, total o parcialmente, a otro proyecto, producto o servicio,
+    sea comercial o no.
+  * Utilizarlo como material de entrenamiento de sistemas automatizados.
+
+No se concede ninguna licencia, expresa ni implícita, más allá de lo enunciado
+arriba. Todos los derechos no otorgados expresamente quedan reservados por el
+autor.
+
+Para solicitar permisos, contactar al autor a través de su perfil de GitHub.
+
+EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+IMPLÍCITA. EL AUTOR NO SERÁ RESPONSABLE POR NINGÚN RECLAMO, DAÑO NI OTRA
+RESPONSABILIDAD DERIVADA DEL SOFTWARE O DE SU USO.
+
+
+ENGLISH
+=======
+
+This repository is published for one purpose only: to publicly showcase the
+author's own work as a portfolio. It is not free or open source software.
+
+YOU MAY:
+
+  * View and read the code and documentation in this repository.
+  * Cite or link to it for professional evaluation, academic or journalistic
+    purposes, with attribution.
+
+YOU MAY NOT, without the author's prior written permission:
+
+  * Use this software, in whole or in part, for any purpose.
+  * Copy, reproduce, host or redistribute the code, the documentation or any
+    other material in this repository.
+  * Modify the code or create derivative works from it.
+  * Incorporate it, in whole or in part, into any other project, product or
+    service, commercial or otherwise.
+  * Use it as training material for automated systems.
+
+No license is granted, express or implied, beyond what is stated above. All
+rights not expressly granted are reserved by the author.
+
+To request permission, contact the author through their GitHub profile.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+IMPLIED. THE AUTHOR SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+
+
+NOTA SOBRE GITHUB / NOTE ON GITHUB
+==================================
+
+Mientras este repositorio sea público, los Términos de Servicio de GitHub
+permiten a cualquier usuario de la plataforma verlo y bifurcarlo (fork) dentro
+de GitHub. Esa posibilidad técnica no amplía los permisos concedidos arriba:
+fuera de ese alcance, el uso y la redistribución siguen requiriendo
+autorización del autor.
+
+While this repository is public, GitHub's Terms of Service allow any GitHub
+user to view and fork it within GitHub. That technical possibility does not
+expand the permissions granted above: beyond that scope, use and
+redistribution still require the author's permission.
