@@ -1,4 +1,4 @@
-# Relevamiento de Instancia Grupal
+# Automatización de Generación de Informes
 
 Automatización del ciclo completo de un relevamiento de clima laboral: toma las
 respuestas de un formulario, arma la planilla de resultados y redacta el informe
