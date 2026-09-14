@@ -52,9 +52,15 @@ ventana con un botón.
 
 ## Qué hay para mirar
 
+Todo lo que hay en [`ejemplos/`](ejemplos/) lo produjo este mismo código
+corriendo sobre `desarrollo/ejemplo_respuestas.csv`, en una sola pasada y **sin
+editar la salida a mano**:
+
 | | |
 |---|---|
-| [`ejemplos/relevamiento_hospital_central.xlsx`](ejemplos/relevamiento_hospital_central.xlsx) | La planilla de resultados, generada por el programa con los datos de prueba |
+| [`ejemplos/informe_generado.md`](ejemplos/informe_generado.md) | **El informe que escribió el modelo**, tal cual salió. Se lee acá mismo, sin descargar nada |
+| [`ejemplos/informe_generado.docx`](ejemplos/informe_generado.docx) | El mismo informe convertido a Word sobre la hoja membretada: el entregable final |
+| [`ejemplos/relevamiento_hospital_central.xlsx`](ejemplos/relevamiento_hospital_central.xlsx) | La planilla de resultados que acompaña al informe |
 | [`ejemplos/prompt_para_la_ia.txt`](ejemplos/prompt_para_la_ia.txt) | El prompt completo que se le manda al modelo, tal como lo arma el programa |
 | [`recursos/estilo_informe.md`](recursos/estilo_informe.md) | La guía de estilo destilada del corpus: estructura, fórmulas, tono y prohibiciones |
 | [`recursos/informes_ejemplo/`](recursos/informes_ejemplo/) | El corpus few-shot (ficticio) en los tres formatos que el programa sabe leer |
@@ -136,7 +142,8 @@ organización real. Para poder publicarlo:
   de una "Unidad de Mediación y Convivencia" genéricos.
 
 Nada de esto recorta lo que el programa hace: el repositorio funciona de punta a
-punta, y los archivos de `ejemplos/` los generó este mismo código.
+punta, y los archivos de `ejemplos/` los generó este mismo código sobre los
+datos de prueba ficticios.
 
 ## Licencia
 
