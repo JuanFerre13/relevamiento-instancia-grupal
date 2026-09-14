@@ -14,6 +14,12 @@ necesita tener Python instalado.
 > credenciales y sus documentos internos fue reemplazado por material ficticio.
 > Ver [Datos y privacidad](#datos-y-privacidad).
 
+![La ventana del programa](docs/interfaz.png)
+
+<sup>La ventana con el CSV de ejemplo cargado, después de generar la planilla.
+Las listas de unidades, fechas y servicios se arman solas con lo que hay
+cargado; el registro de abajo va contando lo que pasa mientras trabaja.</sup>
+
 ---
 
 ## Las tres etapas
